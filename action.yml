@@ -19,5 +19,7 @@ runs:
         sudo snap install --edge edgexfoundry
         sudo snap install --edge ${{inputs.edgex_device_snap}}
         sudo snap start ${{inputs.edgex_device_snap}}.${{inputs.edgex_service_name}}
+        echo "::setFailed"
+        echo "after that"
         curl http://localhost:48082/api/v1/device/name/${{inputs.edgex_device_name}}
       shell: bash
