@@ -19,6 +19,7 @@ runs:
         sudo snap install --edge edgexfoundry
         sudo snap install --dangerous *.snap
         sudo snap start ${{inputs.edgex_device_snap}}.${{inputs.edgex_service_name}}
+        echo "curl http://localhost:48082/api/v1/device/name/${{inputs.edgex_device_name}}"
         curl http://localhost:48082/api/v1/device/name/${{inputs.edgex_device_name}}
         if curl -s http://localhost:48082/api/v1/device/name/${{inputs.edgex_device_name}} | grep -q "${{inputs.edgex_device_name}}"; then
           echo ok
