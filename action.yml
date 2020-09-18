@@ -17,12 +17,12 @@ runs:
     - name: Install dependencies
       run: |
         sudo snap install --edge edgexfoundry
-        sudo snap install --edge ${{inputs.edgex_device_snap}}
+        sudo snap install *.snap
         sudo snap start ${{inputs.edgex_device_snap}}.${{inputs.edgex_service_name}}
-        if curl -s http://localhost:48082/api/v1/device/name/${{inputs.edgex_device_name}} | grep -q "${{inputs.edgex_device_name}}A"; then
+        if curl -s http://localhost:48082/api/v1/device/name/${{inputs.edgex_device_name}} | grep -q "${{inputs.edgex_device_name}}"; then
           echo ok
         else
-          echo "::error ::Did not respond"
+          echo "::error ::device test failed"
           exit 1
         fi
       shell: bash
