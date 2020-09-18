@@ -19,7 +19,6 @@ runs:
         sudo snap install --edge edgexfoundry
         sudo snap install --edge ${{inputs.edgex_device_snap}}
         sudo snap start ${{inputs.edgex_device_snap}}.${{inputs.edgex_service_name}}
-        echo "::error There was a problem"
-        echo "after that"
+        echo "::error file=app.js,line=10,col=15::Something went wrong"
         curl http://localhost:48082/api/v1/device/name/${{inputs.edgex_device_name}}
       shell: bash
